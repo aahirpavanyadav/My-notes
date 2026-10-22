@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f6fa">
+<title>My Notes</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header>
+  <h1>📝 My Notes</h1>
+  <div class="header-actions">
+    <span id="saveState" style="font-size:12px;opacity:.9">Saved locally</span>
+    <button class="save-btn" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme">🌙 Dark</button>
+    <div class="save-menu">
+      <button class="save-btn" id="saveToggle" type="button">⬇ Export</button>
+      <div class="dropdown" id="saveDropdown">
+        <button id="savePdfBtn" type="button">Save as PDF</button>
+        <button id="saveWordBtn" type="button">Save as Word (.docx)</button>
+        <button id="downloadHtmlBtn" type="button">Download editable note (.html)</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar" role="toolbar" aria-label="Note formatting">
+  <button class="tool-btn" type="button" data-command="bold" title="Bold"><b>B</b></button>
+  <button class="tool-btn" type="button" data-command="italic" title="Italic"><i>I</i></button>
+  <button class="tool-btn" type="button" data-command="underline" title="Underline"><u>U</u></button>
+  <button class="tool-btn" type="button" data-command="strikeThrough" title="Strikethrough"><s>S</s></button>
+  <span class="separator"></span>
+  <select class="tool-btn" id="blockStyle" aria-label="Text style">
+    <option value="P">Normal text</option><option value="H1">Heading 1</option><option value="H2">Heading 2</option><option value="H3">Heading 3</option><option value="BLOCKQUOTE">Quote</option>
+  </select>
+  <button class="tool-btn" type="button" data-command="insertUnorderedList">• List</button>
+  <button class="tool-btn" type="button" data-command="insertOrderedList">1. List</button>
+  <button class="tool-btn" type="button" data-command="justifyLeft" title="Align left">≡</button>
+  <button class="tool-btn" type="button" data-command="justifyCenter" title="Center">☷</button>
+  <button class="tool-btn" type="button" data-command="justifyRight" title="Align right">⇥</button>
+  <span class="separator"></span>
+  <label class="file-label" for="imageInput">🖼 Insert image</label><input type="file" id="imageInput" accept="image/*">
+  <label class="file-label" for="pdfInput">📎 Insert PDF</label><input type="file" id="pdfInput" accept="application/pdf,.pdf">
+  <button class="tool-btn" id="linkBtn" type="button">🔗 Link</button>
+  <button class="tool-btn" id="undoBtn" type="button" title="Undo">↶</button>
+  <button class="tool-btn" id="redoBtn" type="button" title="Redo">↷</button>
+  <button class="tool-btn" id="clearBtn" type="button">🗑 Clear note</button>
+</div>
+
+<main>
+  <input id="note-title" type="text" placeholder="Untitled note" value="Untitled Note" aria-label="Note title">
+  <div id="workspace" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true" data-placeholder="Start writing anywhere… Paste text or images, insert images and PDFs inline, and keep creating your own layout."></div>
+  <div class="status"><span id="storageInfo">Your note is saved in this browser.</span><span>Tip: click an image or PDF to select it; drag to move, use the corner dot to resize images.</span></div>
+</main>
+<footer>One workspace for everything. Your text and attachments stay together in the order and layout you choose.</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
